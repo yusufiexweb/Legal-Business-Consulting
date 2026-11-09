@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA333X // Official Judicial & Legal Counsel</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Inter + JetBrains Mono) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gov-accent: #c5a059;
+            --gov-bg: #090d16;
+            --gov-card: #0f1523;
+            --gov-border: rgba(197, 160, 89, 0.25);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--gov-bg);
+            color: #e2e8f0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .mono-text {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Toast Notification Styling */
+        #toastNotification {
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #toastNotification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Minimalist Tech & Judicial Card */
+        .gov-card {
+            background: var(--gov-card);
+            border: 1px solid var(--gov-border);
+            transition: all 0.25s ease;
+        }
+        .gov-card:hover {
+            border-color: var(--gov-accent);
+            box-shadow: 0 4px 20px rgba(197, 160, 89, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .modal-blur {
+            backdrop-filter: blur(12px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--gov-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gov-accent);
+        }
+    </style>
+</head>
+<body class="selection:bg-[#c5a059] selection:text-black">
+
+    <!-- Toast Notification Box -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-[100005] bg-[#0f1523] border border-[#c5a059] px-5 py-3.5 rounded-lg shadow-2xl flex items-center gap-3 mono-text text-xs text-white">
+        <i class="fa-solid fa-scale-balanced text-[#c5a059]"></i>
+        <span id="toastMessage">Action completed successfully.</span>
+    </div>
+
+    <!-- ================= OFFICIAL PRELOADER ================= -->
+    <div id="preloader" class="fixed inset-0 bg-[#090d16] z-[100000] flex flex-col justify-between p-8 md:p-12 transition-all duration-700 select-none">
+        <div class="flex justify-between items-center mono-text text-[11px] text-[#c5a059] uppercase tracking-wider border-b border-zinc-800 pb-4">
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-landmark"></i> NOVA333X JUDICIAL PORTAL
+            </span>
+            <span>SYSTEM LAUNCHING...</span>
+        </div>
+
+        <div class="my-auto text-center">
+            <div class="w-12 h-12 mx-auto mb-4 border border-[#c5a059] flex items-center justify-center bg-[#0f1523] rounded-full">
+                <i class="fa-solid fa-scale-balanced text-[#c5a059] text-xl"></i>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase mb-2">
+                NOVA<span class="text-[#c5a059]">333</span>X COUNSEL
+            </h1>
+            <div class="mono-text text-xl font-bold text-[#c5a059] tracking-widest mb-3" id="preloaderCounter">0%</div>
+            <div class="w-40 h-1 bg-zinc-800 mx-auto overflow-hidden rounded-full">
+                <div id="preloaderBar" class="h-full bg-[#c5a059] transition-all duration-75" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-end mono-text text-[11px] text-zinc-500 uppercase border-t border-zinc-800 pt-4">
+            <span>JUDICIAL DOCKET SYSTEM</span>
+            <span class="text-white">ENCRYPTED 256-BIT</span>
+        </div>
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#090d16]/90 border-b border-zinc-800/80 px-6 py-4 flex justify-between items-center backdrop-blur-md">
+        <a href="#" class="flex items-center gap-3">
+            <div class="w-8 h-8 border border-[#c5a059] flex items-center justify-center bg-[#0f1523] rounded">
+                <i class="fa-solid fa-scale-balanced text-[#c5a059] text-xs"></i>
+            </div>
+            <div>
+                <span class="font-bold text-sm tracking-wide text-white uppercase block leading-tight">NOVA333X</span>
+                <span class="mono-text text-[9px] text-[#c5a059] tracking-widest uppercase block">JUDICIAL COUNSEL</span>
+            </div>
+        </a>
+
+        <div class="flex items-center gap-8 text-xs font-medium">
+            <nav class="hidden lg:flex gap-6 text-zinc-400 items-center">
+                <a href="#jurisdiction" class="hover:text-white transition">Jurisdiction</a>
+                <a href="#practice" class="hover:text-white transition">Sectors</a>
+                <a href="#registry" class="hover:text-white transition">Docket Search</a>
+                <a href="#attorneys" class="hover:text-white transition">Partners</a>
+                <a href="#vault" class="hover:text-white transition">Legal Vault</a>
+                <a href="#schedule" class="hover:text-white transition">Fees</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button id="openAuthModal" class="border border-zinc-700 hover:border-[#c5a059] px-4 py-2 hover:bg-[#c5a059] hover:text-black transition uppercase text-[11px] font-mono rounded cursor-pointer">
+                    Portal Access
+                </button>
+                <button id="openConsultModal" class="bg-[#c5a059] text-black border border-[#c5a059] px-4 py-2 hover:bg-white hover:border-white transition uppercase text-[11px] font-bold font-mono rounded cursor-pointer">
+                    Book Consultation
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section id="jurisdiction" class="pt-36 pb-16 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-8 space-y-5">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#0f1523] border border-[#c5a059]/40 text-[#c5a059] mono-text text-[10px] uppercase tracking-wider rounded">
+                    <i class="fa-solid fa-shield-halved"></i> OFFICIAL JUDICIAL REPRESENTATION &amp; ARBITRATION
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                    Supreme Constitutional &amp; <span class="text-[#c5a059]">Corporate Defense</span>
+                </h1>
+                <p class="text-zinc-400 text-sm leading-relaxed max-w-2xl">
+                    Authorized statutory advisory, international commercial arbitration, and corporate litigation before state judiciaries and supreme tribunals worldwide.
+                </p>
+
+                <div class="flex flex-wrap gap-3 pt-2 font-mono text-xs">
+                    <button id="heroFilingBtn" class="bg-[#c5a059] text-black border border-[#c5a059] px-5 py-3 font-bold uppercase tracking-wider hover:bg-white transition rounded cursor-pointer">
+                        File Legal Notice <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                    </button>
+                    <a href="#registry" class="border border-zinc-700 text-zinc-300 px-5 py-3 font-bold uppercase tracking-wider hover:border-[#c5a059] hover:text-white transition rounded flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-[#c5a059]"></i> Query Docket Status
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4">
+                <div class="gov-card p-6 rounded-lg border-l-4 border-l-[#c5a059]">
+                    <div class="mono-text text-[10px] text-[#c5a059] uppercase tracking-wider mb-2">// STATE BAR REGISTRY</div>
+                    <h3 class="text-base font-bold text-white mb-4">Firm Accreditation</h3>
+                    <div class="space-y-3 mono-text text-xs">
+                        <div class="flex justify-between border-b border-zinc-800 pb-2">
+                            <span class="text-zinc-400">BAR LICENSE:</span>
+                            <span class="text-white font-bold">#AZ-88402-STATE</span>
+                        </div>
+                        <div class="flex justify-between border-b border-zinc-800 pb-2">
+                            <span class="text-zinc-400">JURISDICTION:</span>
+                            <span class="text-white font-bold">Supreme &amp; Appellate</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-zinc-400">STATUS:</span>
+                            <span class="text-[#c5a059] font-bold">100% ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= LIVE JUDICIAL STATISTICS BAR ================= -->
+    <section class="py-8 px-6 max-w-7xl mx-auto border-y border-zinc-800 bg-[#070b12] rounded-xl my-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center mono-text">
+            <div>
+                <span class="text-zinc-500 text-[10px] block uppercase">// TRIALS WON</span>
+                <span class="text-2xl font-bold text-white">98.6%</span>
+            </div>
+            <div>
+                <span class="text-zinc-500 text-[10px] block uppercase">// ASSETS PROTECTED</span>
+                <span class="text-2xl font-bold text-[#c5a059]">$1.8B+</span>
+            </div>
+            <div>
+                <span class="text-zinc-500 text-[10px] block uppercase">// ACTIVE DOCKETS</span>
+                <span class="text-2xl font-bold text-white">340+</span>
+            </div>
+            <div>
+                <span class="text-zinc-500 text-[10px] block uppercase">// GLOBAL JURISDICTIONS</span>
+                <span class="text-2xl font-bold text-green-400">48 Countries</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DOCKET REGISTRY QUERY WIDGET ================= -->
+    <section id="registry" class="py-10 px-6 max-w-7xl mx-auto border border-zinc-800 bg-[#0c111c] rounded-xl my-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-5">
+                <span class="mono-text text-xs text-[#c5a059] uppercase tracking-wider">// PUBLIC DOCKET REGISTRY</span>
+                <h2 class="text-xl font-bold text-white uppercase mt-1">Official Case File Search</h2>
+            </div>
+
+            <form id="docketSearchForm" class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="docketNumberInput" required placeholder="Enter Filing ID or Docket Number (e.g., CAS-2026-8894)..." class="w-full bg-[#090d16] border border-zinc-700 p-3.5 text-white mono-text text-xs rounded focus:border-[#c5a059] focus:outline-none">
+                <button type="submit" class="bg-[#c5a059] text-black px-6 py-3.5 font-bold uppercase tracking-wider hover:bg-white transition cursor-pointer mono-text text-xs whitespace-nowrap rounded">
+                    Search Docket <i class="fa-solid fa-magnifying-glass ml-1"></i>
+                </button>
+            </form>
+
+            <div id="docketResultBox" class="hidden mt-4 p-4 bg-[#090d16] border border-[#c5a059] mono-text text-xs text-zinc-300 rounded">
+                <div class="flex justify-between border-b border-zinc-800 pb-2 mb-2 font-bold text-[#c5a059]">
+                    <span>STATUS: ACTIVE LITIGATION</span>
+                    <span>COURT ROOM: 04-A</span>
+                </div>
+                <p>Case File <span id="resDocketId" class="text-white font-bold"></span> has been submitted to the Judicial Registry. Hearing schedule confirmed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PRACTICE SECTORS ================= -->
+    <section id="practice" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="mono-text text-xs text-[#c5a059] uppercase tracking-wider block mb-1">// LEGAL DISCIPLINES</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold uppercase text-white">Statutory Practice Sectors</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="gov-card p-6 rounded-lg flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 bg-[#090d16] border border-[#c5a059]/40 flex items-center justify-center text-[#c5a059] mb-4 text-base rounded">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Corporate &amp; Mergers</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed mb-4">
+                        Corporate restructuring, international joint ventures, compliance audits, and regulatory approvals.
+                    </p>
+                </div>
+                <button onclick="openPracticeModal('Corporate & Mergers')" class="mono-text text-xs text-[#c5a059] hover:underline uppercase text-left cursor-pointer">
+                    View Sector &rarr;
+                </button>
+            </div>
+
+            <div class="gov-card p-6 rounded-lg flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 bg-[#090d16] border border-[#c5a059]/40 flex items-center justify-center text-[#c5a059] mb-4 text-base rounded">
+                        <i class="fa-solid fa-gavel"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Appellate Litigation</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed mb-4">
+                        Appellate advocacy before high tribunals, constitutional disputes, and administrative law petitions.
+                    </p>
+                </div>
+                <button onclick="openPracticeModal('Supreme Appellate Litigation')" class="mono-text text-xs text-[#c5a059] hover:underline uppercase text-left cursor-pointer">
+                    View Sector &rarr;
+                </button>
+            </div>
+
+            <div class="gov-card p-6 rounded-lg flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 bg-[#090d16] border border-[#c5a059]/40 flex items-center justify-center text-[#c5a059] mb-4 text-base rounded">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">International Arbitration</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed mb-4">
+                        Representation under ICC, LCIA, and UNCITRAL arbitration rules for sovereign and corporate clients.
+                    </p>
+                </div>
+                <button onclick="openPracticeModal('International Arbitration')" class="mono-text text-xs text-[#c5a059] hover:underline uppercase text-left cursor-pointer">
+                    View Sector &rarr;
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SENIOR PARTNERS & ATTORNEYS ================= -->
+    <section id="attorneys" class="py-16 px-6 max-w-7xl mx-auto border-t border-zinc-800">
+        <div class="text-center mb-12">
+            <span class="mono-text text-xs text-[#c5a059] uppercase tracking-wider block mb-1">// LEGAL COUNSELORS</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold uppercase text-white">Senior Managing Partners</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="gov-card p-6 rounded-lg">
+                <div class="w-16 h-16 bg-[#090d16] border border-[#c5a059] rounded-full flex items-center justify-center text-[#c5a059] text-xl mb-4 font-bold">
+                    AV
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Alexander Vance, Esq.</h3>
+                <span class="mono-text text-[11px] text-[#c5a059] uppercase block mb-3">Senior Partner // Appellate Chair</span>
+                <p class="text-zinc-400 text-xs leading-relaxed mb-4">
+                    Specializing in constitutional appeals and Supreme Court litigation with over 20 years of state bar tenure.
+                </p>
+                <div class="mono-text text-[10px] text-zinc-500 border-t border-zinc-800 pt-3 flex justify-between">
+                    <span>BAR ID: #NY-99201</span>
+                    <span class="text-white">Harvard Law LL.M</span>
+                </div>
+            </div>
+
+            <div class="gov-card p-6 rounded-lg">
+                <div class="w-16 h-16 bg-[#090d16] border border-[#c5a059] rounded-full flex items-center justify-center text-[#c5a059] text-xl mb-4 font-bold">
+                    EH
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Elena Howard, KC</h3>
+                <span class="mono-text text-[11px] text-[#c5a059] uppercase block mb-3">Head of International Arbitration</span>
+                <p class="text-zinc-400 text-xs leading-relaxed mb-4">
+                    Lead counsel for multi-billion dollar cross-border energy disputes and ICC tribunal arbitrations.
+                </p>
+                <div class="mono-text text-[10px] text-zinc-500 border-t border-zinc-800 pt-3 flex justify-between">
+                    <span>BAR ID: #UK-44102</span>
+                    <span class="text-white">Oxford Juris Doctor</span>
+                </div>
+            </div>
+
+            <div class="gov-card p-6 rounded-lg">
+                <div class="w-16 h-16 bg-[#090d16] border border-[#c5a059] rounded-full flex items-center justify-center text-[#c5a059] text-xl mb-4 font-bold">
+                    YR
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Joseph Maccartin, LL.D</h3>
+                <span class="mono-text text-[11px] text-[#c5a059] uppercase block mb-3">Corporate &amp; M&amp;A Counsel</span>
+                <p class="text-zinc-400 text-xs leading-relaxed mb-4">
+                    Expert in Caspian region financial regulations, corporate governance, and complex tax structuring.
+                </p>
+                <div class="mono-text text-[10px] text-zinc-500 border-t border-zinc-800 pt-3 flex justify-between">
+                    <span>BAR ID: #AZ-88402</span>
+                    <span class="text-white">Heidelberg University</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DOWNLOADABLE LEGAL VAULT ================= -->
+    <section id="vault" class="py-16 px-6 max-w-7xl mx-auto border-t border-zinc-800">
+        <div class="text-center mb-12">
+            <span class="mono-text text-xs text-[#c5a059] uppercase tracking-wider block mb-1">// OFFICIAL TEMPLATES</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold uppercase text-white">Legal Document Vault</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mono-text text-xs">
+            <div class="gov-card p-4 rounded flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-file-pdf text-[#c5a059] text-lg"></i>
+                    <div>
+                        <div class="text-white font-bold">Power of Attorney Form</div>
+                        <div class="text-[10px] text-zinc-500">PDF // 1.2 MB</div>
+                    </div>
+                </div>
+                <button onclick="downloadVaultDoc('Power of Attorney Form')" class="text-[#c5a059] hover:text-white px-2 py-1 cursor-pointer"><i class="fa-solid fa-download"></i></button>
+            </div>
+
+            <div class="gov-card p-4 rounded flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-file-contract text-[#c5a059] text-lg"></i>
+                    <div>
+                        <div class="text-white font-bold">M&amp;A NDA Template</div>
+                        <div class="text-[10px] text-zinc-500">DOCX // 850 KB</div>
+                    </div>
+                </div>
+                <button onclick="downloadVaultDoc('M&A NDA Template')" class="text-[#c5a059] hover:text-white px-2 py-1 cursor-pointer"><i class="fa-solid fa-download"></i></button>
+            </div>
+
+            <div class="gov-card p-4 rounded flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-shield text-[#c5a059] text-lg"></i>
+                    <div>
+                        <div class="text-white font-bold">Court Appeal Petition</div>
+                        <div class="text-[10px] text-zinc-500">PDF // 2.1 MB</div>
+                    </div>
+                </div>
+                <button onclick="downloadVaultDoc('Court Appeal Petition')" class="text-[#c5a059] hover:text-white px-2 py-1 cursor-pointer"><i class="fa-solid fa-download"></i></button>
+            </div>
+
+            <div class="gov-card p-4 rounded flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-coins text-[#c5a059] text-lg"></i>
+                    <div>
+                        <div class="text-white font-bold">Arbitration Filing Guide</div>
+                        <div class="text-[10px] text-zinc-500">PDF // 3.4 MB</div>
+                    </div>
+                </div>
+                <button onclick="downloadVaultDoc('Arbitration Filing Guide')" class="text-[#c5a059] hover:text-white px-2 py-1 cursor-pointer"><i class="fa-solid fa-download"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= OFFICIAL FEE SCHEDULE ================= -->
+    <section id="schedule" class="py-12 px-6 max-w-7xl mx-auto border-t border-zinc-800">
+        <div class="text-center mb-8">
+            <span class="mono-text text-xs text-[#c5a059] uppercase tracking-wider">// TARIFF MATRIX</span>
+            <h2 class="text-xl font-bold text-white uppercase mt-1">Official Fee Schedule</h2>
+        </div>
+
+        <div class="overflow-x-auto rounded-lg border border-zinc-800">
+            <table class="w-full text-left mono-text text-xs">
+                <thead class="bg-[#0f1523] text-[#c5a059] uppercase border-b border-zinc-800">
+                    <tr>
+                        <th class="p-3.5">Service Category</th>
+                        <th class="p-3.5">Scope of Work</th>
+                        <th class="p-3.5">Fee</th>
+                        <th class="p-3.5">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-800 text-zinc-300">
+                    <tr class="hover:bg-[#0f1523]/50">
+                        <td class="p-3.5 font-bold text-white">Case Evaluation</td>
+                        <td class="p-3.5">Statutory review &amp; legal risk assessment</td>
+                        <td class="p-3.5 text-[#c5a059]">$350 / Session</td>
+                        <td class="p-3.5"><button onclick="selectServiceFee('Initial Evaluation')" class="text-white bg-[#c5a059]/20 hover:bg-[#c5a059] hover:text-black px-3 py-1 transition cursor-pointer rounded">Book</button></td>
+                    </tr>
+                    <tr class="hover:bg-[#0f1523]/50">
+                        <td class="p-3.5 font-bold text-white">Contract Drafting</td>
+                        <td class="p-3.5">Custom M&amp;A, joint venture agreement</td>
+                        <td class="p-3.5 text-[#c5a059]">$1,200 / Document</td>
+                        <td class="p-3.5"><button onclick="selectServiceFee('Contract Drafting')" class="text-white bg-[#c5a059]/20 hover:bg-[#c5a059] hover:text-black px-3 py-1 transition cursor-pointer rounded">Book</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="border-t border-zinc-800 bg-[#060911] py-12 px-6 mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center text-xs mono-text text-zinc-400 gap-6">
+            <div>
+                <h4 class="text-base font-bold text-white uppercase mb-1">NOVA333X JUDICIAL<span class="text-[#c5a059]">.</span></h4>
+                <p>Legal Advisory &amp; Supreme Court Representation Platform.</p>
+            </div>
+            <div class="space-y-1">
+                <div class="text-white font-bold uppercase mb-1">Bar Offices</div>
+                <div>Baku // Nizami Street 92</div>
+                <div>London // Old Broad Street 14</div>
+            </div>
+            <div>&copy; 2026 NOVA333X LEGAL PRACTICE. ALL RIGHTS RESERVED.</div>
+        </div>
+    </footer>
+
+    <!-- ================= CONSULTATION MODAL ================= -->
+    <div id="consultModal" class="fixed inset-0 bg-black/90 modal-blur z-[100001] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-[#0f1523] border border-[#c5a059] w-full max-w-lg p-6 relative shadow-2xl rounded-lg my-auto">
+            <button id="closeConsultModal" class="absolute top-4 right-4 w-7 h-7 bg-black text-white font-bold flex items-center justify-center hover:bg-[#c5a059] hover:text-black transition cursor-pointer rounded">&times;</button>
+            <div class="mb-5">
+                <span class="mono-text text-[10px] text-[#c5a059] uppercase block mb-1">// OFFICIAL FILING</span>
+                <h3 class="text-xl font-bold uppercase text-white">Schedule Consultation</h3>
+            </div>
+            
+            <form id="consultForm" class="space-y-4 font-mono text-xs">
+                <div>
+                    <label class="text-zinc-400 uppercase block mb-1">Full Name / Entity Name</label>
+                    <input type="text" required placeholder="Alexander Vance" class="w-full bg-[#090d16] border border-zinc-700 p-3 text-white focus:border-[#c5a059] focus:outline-none rounded">
+                </div>
+                <div>
+                    <label class="text-zinc-400 uppercase block mb-1">FIN / Tax ID Number</label>
+                    <input type="text" required placeholder="7AA8894X" class="w-full bg-[#090d16] border border-zinc-700 p-3 text-white focus:border-[#c5a059] focus:outline-none rounded">
+                </div>
+                <div>
+                    <label class="text-zinc-400 uppercase block mb-1">Select Practice Area</label>
+                    <select id="consultAreaSelect" class="w-full bg-[#090d16] border border-zinc-700 p-3 text-white focus:border-[#c5a059] focus:outline-none cursor-pointer rounded">
+                        <option value="Corporate & Mergers">Corporate &amp; Mergers</option>
+                        <option value="Supreme Appellate Litigation">Appellate Litigation</option>
+                        <option value="International Arbitration">International Arbitration</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-[#c5a059] text-black p-3.5 font-bold uppercase tracking-wider hover:bg-white transition cursor-pointer rounded">
+                    Confirm Judicial Appointment
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= CLIENT AUTH MODAL ================= -->
+    <div id="authModal" class="fixed inset-0 bg-black/90 modal-blur z-[100001] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-[#0f1523] border border-[#c5a059] w-full max-w-md p-6 relative shadow-2xl rounded-lg my-auto">
+            <button id="closeAuthModal" class="absolute top-4 right-4 w-7 h-7 bg-black text-white font-bold flex items-center justify-center hover:bg-[#c5a059] hover:text-black transition cursor-pointer rounded">&times;</button>
+            <div class="text-center mb-5">
+                <h3 class="text-xl font-bold uppercase text-white">Client Portal Access</h3>
+                <p class="mono-text text-[10px] text-[#c5a059] tracking-wider mt-1">SECURE CASE MANAGEMENT</p>
+            </div>
+            
+            <form id="authForm" class="space-y-4 font-mono text-xs">
+                <div>
+                    <label class="text-zinc-400 uppercase block mb-1">Client ID / Corporate ID</label>
+                    <input type="text" required placeholder="CLIENT-88402" class="w-full bg-[#090d16] border border-zinc-700 p-3 text-white focus:border-[#c5a059] focus:outline-none rounded">
+                </div>
+                <div>
+                    <label class="text-zinc-400 uppercase block mb-1">Encrypted Password</label>
+                    <input type="password" required placeholder="••••••••••••" class="w-full bg-[#090d16] border border-zinc-700 p-3 text-white focus:border-[#c5a059] focus:outline-none rounded">
+                </div>
+                <button type="submit" class="w-full bg-[#c5a059] text-black p-3 font-bold uppercase tracking-wider hover:bg-white transition cursor-pointer rounded">
+                    Authenticate Session
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            
+            // Toast Notification Helper
+            function showToast(message) {
+                const toast = document.getElementById("toastNotification");
+                document.getElementById("toastMessage").textContent = message;
+                toast.classList.add("show");
+                setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 3500);
+            }
+
+            // Preloader Simulation
+            const preloader = document.getElementById("preloader");
+            const preloaderCounter = document.getElementById("preloaderCounter");
+            const preloaderBar = document.getElementById("preloaderBar");
+            let percent = 0;
+
+            const loadInterval = setInterval(() => {
+                percent += Math.floor(Math.random() * 20) + 10;
+                if(percent >= 100) {
+                    percent = 100;
+                    preloaderCounter.textContent = "100%";
+                    preloaderBar.style.width = "100%";
+                    clearInterval(loadInterval);
+                    setTimeout(() => {
+                        preloader.style.opacity = "0";
+                        setTimeout(() => preloader.style.display = "none", 600);
+                    }, 400);
+                } else {
+                    preloaderCounter.textContent = percent + "%";
+                    preloaderBar.style.width = percent + "%";
+                }
+            }, 45);
+
+            // Docket Registry Live Search Simulator
+            const docketSearchForm = document.getElementById("docketSearchForm");
+            const docketResultBox = document.getElementById("docketResultBox");
+            const resDocketId = document.getElementById("resDocketId");
+
+            docketSearchForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const query = document.getElementById("docketNumberInput").value;
+                resDocketId.textContent = query.toUpperCase();
+                docketResultBox.classList.remove("hidden");
+                showToast("Docket Record query processed successfully.");
+            });
+
+            // Vault Download Simulation
+            window.downloadVaultDoc = function(docName) {
+                showToast(`Downloading template: ${docName}`);
+            };
+
+            // Modals Logic
+            const consultModal = document.getElementById("consultModal");
+            const authModal = document.getElementById("authModal");
+            const consultAreaSelect = document.getElementById("consultAreaSelect");
+
+            document.getElementById("openConsultModal").addEventListener("click", () => consultModal.classList.remove("opacity-0", "pointer-events-none"));
+            document.getElementById("heroFilingBtn").addEventListener("click", () => consultModal.classList.remove("opacity-0", "pointer-events-none"));
+            document.getElementById("closeConsultModal").addEventListener("click", () => consultModal.classList.add("opacity-0", "pointer-events-none"));
+
+            document.getElementById("openAuthModal").addEventListener("click", () => authModal.classList.remove("opacity-0", "pointer-events-none"));
+            document.getElementById("closeAuthModal").addEventListener("click", () => authModal.classList.add("opacity-0", "pointer-events-none"));
+
+            window.openPracticeModal = function (practiceName) {
+                consultAreaSelect.value = practiceName;
+                consultModal.classList.remove("opacity-0", "pointer-events-none");
+                showToast(`Selected Sector: ${practiceName}`);
+            };
+
+            window.selectServiceFee = function (feeName) {
+                consultModal.classList.remove("opacity-0", "pointer-events-none");
+                showToast(`Booking Fee Tariff for: ${feeName}`);
+            };
+
+            document.getElementById("consultForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                consultModal.classList.add("opacity-0", "pointer-events-none");
+                this.reset();
+                showToast("Legal Notice & Appointment Request Transmitted.");
+            });
+
+            document.getElementById("authForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+                authModal.classList.add("opacity-0", "pointer-events-none");
+                this.reset();
+                showToast("Authenticated into Secure Client Portal.");
+            });
+        });
+    </script>
+</body>
+</html>
